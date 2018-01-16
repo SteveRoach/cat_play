@@ -1,0 +1,391 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+@mixin box_sizing {   
+  -webkit-box-sizing: border-box;   
+  box-sizing:         border-box;   
+}   
+
+/* BEM */
+.block__element--modifier
+ 
+/* miscellaneous */   
+ 
+.debug_dump {   
+  clear: both;   
+  float: left;   
+  width: 100%;   
+  margin-top: 45px; 
+  @include box_sizing;   
+}
+
+/* FONTS */
+/* Load external */
+@import url('https://fonts.googleapis.com/css?family=Caveat+Brush');
+@import url('https://fonts.googleapis.com/css?family=Alegreya');
+
+/* Font family definitions */
+$site__header--font-family: 'Caveat Brush', Arial, sans-serif;
+$site__content--font-family: Arial, Helvetica, sans-serif;
+$site__icon--font-family: Arial, Helvetica, sans-serif;
+
+/* COLOURS */
+$site__background-colour: #d6ecec;
+$site__foreground-colour: black;
+$site__title-colour: #008e8e;
+$site__icon-colour: #008e8e;
+$site__icon-colour--rollover: #4cafaf;
+$site__footer--background-colour: #4cafaf;
+$site__form-input--background-colour: #c5e4e4;
+$site__form-input-focus--background-colour: #eaf5f5;
+$site__form-button--background-colour: #a2d4d4;
+
+/* Universal */
+html {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	font-size: 100%;
+	background-color: $site__background-colour;
+	color: $site__foreground-colour;
+}
+
+img {
+	display: block;
+	font-size: 0;
+	line-height: 0;
+}
+
+h1 {
+	font-family: $site__header--font-family;
+	font-weight: bold;
+	color: $site__foreground-colour;
+}
+
+h2 {
+	font-family: $site__content--font-family;
+	font-size: 2.7em;
+	font-weight: bold;
+	color: $site__foreground-colour;
+}
+
+p {
+	font-size: 2em;
+	color: $site__foreground-colour;
+}
+
+a , a:hover, a:active, a:focus {
+	text-decoration: none;
+	outline: none;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+/* Generic */
+.tapered-line {
+	display: block;
+	border: none;
+	height: 2px;
+	background: black;
+	background: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(black), to(transparent));
+	background: linear-gradient(to right, transparent, black, transparent);
+}
+
+.image-border {
+	border: 1px solid black;
+}
+
+.image-caption {
+	font-size: 1.6em; 
+	font-style: italic;
+}
+
+.top-margin-20 {
+	margin-top: 20px;
+}
+
+.map-image {
+	border: 1px solid black
+}
+
+/* Header */
+.site__logo img {
+	display: inline-block;
+	height: 50px;
+	margin: 5px 5px;
+}
+
+.site__logo h1 {
+	display: inline-block;
+	font-size: 4em;
+	margin: 0;
+	color: $site__title-colour;
+	-webkit-transform: translateY(10px);
+	        transform: translateY(10px);
+}
+
+.navbar {
+	margin-bottom: 0px;
+	border: 0;
+}
+
+.navbar-toggle {
+	margin-top: 15px;
+}
+
+.navbar-default .navbar-nav li a, .navbar-default .navbar-nav li a:focus, .navbar-default .navbar-nav li a:active {
+	font-size: 2em;
+	font-weight: bold;
+	color: $site__foreground-colour;
+}
+
+.navbar-default .navbar-nav li a:hover {
+	font-size: 2em;
+	color: $site__title-colour;
+}
+
+/* Home */
+.home__hero--img-outer {
+	position: relative;
+	text-align: center;
+}
+
+.home__hero--img-inner {
+	display: inline-block;
+	background-image: image-url('cat_play_home_575x383.jpg');
+	max-width: 575px;
+	width: 100%;
+	height: 60vh;
+	background-repeat: no-repeat;
+	background-position: center bottom;
+	background-size: cover;
+}
+
+.home__main--text {
+	position: relative;
+	top: 2vh;
+	left: 3vh;
+	text-align: left;
+}
+
+.home__main--text-span {
+	background-color: #666;
+	color: white;
+	font-size: 4.3vh;
+	padding: 0 10px;
+}
+
+/* Contact */
+.socmed-logo {
+	margin-bottom: 20px;
+}
+
+.socmed-logo img {
+	display: inline-block;
+	height: 50px;
+	margin: 0 10px;
+}
+
+.socmed-logo h2 {
+	display: inline-block;
+	font-weight: bold;
+	font-size: 2.4em;
+	margin: 0;
+	-webkit-transform: translateY(12px);
+	        transform: translateY(12px);
+}
+
+/* Links */
+.link-plate {
+	padding-top: 20px;
+}
+
+.link-plate__anchor {
+	text-align: center;
+	border: black solid 2px;
+	border-radius: 10px;
+	width: 42vw;
+	font-family: $site__icon--font-family;
+	background-color: $site__icon-colour;
+	color: $site__foreground-colour;
+	text-decoration: none;
+}
+
+.link-plate__anchor:hover {
+	background-color: $site__icon-colour--rollover;
+	color: $site__foreground-colour;
+	text-decoration: none;
+}
+
+.link-plate h3 {
+	font-size: 7vw;
+	margin: 0 0 1vw 0;
+}
+
+.link-plate img {
+	width: 32vw;
+}
+
+/* Pages */
+.page-logo__outer {
+	padding: 10px 0;
+}
+
+.page-logo__inner {
+	text-align: center;
+	border: black solid 2px;
+	border-radius: 10px;
+	width: 130px;
+	height: 130px;
+	font-family: $site__icon--font-family;
+	background-color: $site__icon-colour;
+	color: $site__foreground-colour;
+	text-decoration: none;
+}
+
+.page-logo__outer img {
+	width: 100px;
+	margin-top: 15px;
+}
+
+/* Forms */
+.form-label {
+	font-family: $site__content--font-family;
+	font-size: 1.5em;
+	font-weight: bold;
+	color: $site__foreground-colour;
+}
+
+.form-control {
+	font-size: 1.6em;
+	background-color: $site__form-input--background-colour;
+	border: 0;
+	border-radius: 0;
+	-webkit-box-shadow: none;
+	        box-shadow: none;
+}
+
+.form-control:hover, .form-control:focus {
+	font-size: 1.6em;
+	background-color: $site__form-input-focus--background-colour;
+	border: 0;
+	border-radius: 0;
+	-webkit-box-shadow: none;
+	        box-shadow: none;
+}
+
+.form-button {
+	background-color: $site__form-button--background-colour;
+	border-color: black;
+	color: $site__foreground-colour;
+	font-weight: bold;
+}
+
+.form-button:hover {
+	background-color: $site__form-input--background-colour;
+}
+
+.error-box { 
+    width: 50%; 
+    border: 5px solid black; 
+    background-color: white; 
+    padding: 10px; 
+    margin: 10px auto; 
+} 
+ 
+.notice-box { 
+    width: 50%; 
+    border: 5px solid black; 
+    background-color: white; 
+    padding: 10px; 
+    margin: 10px auto; 
+    text-align: center; 
+    font-weight: bold; 
+} 
+
+/* Footer */
+.footer {
+	padding: 20px 0 0 0;
+}
+
+.footer div {
+	margin: 0;
+	padding: 20px 0 0 0;
+	background-color: $site__footer--background-colour;
+}
+
+.footer p {
+	font-size: 1.3em;
+	height: 10px;
+	color: white;
+	padding-right: 1em;
+}
+
+/* Media queries */
+/* Extra small devices (portrait phones, less than 576px)
+   No media query since this is the default in Bootstrap */
+
+/* Small devices (landscape phones, 576px and up) */
+@media only screen and (min-width: 576px) {
+	/* Home */
+	.home__hero--img-inner {
+		background-image: image-url('cat_play_home_767x511.jpg');
+		max-width: 767px;
+	}
+
+	.home__main--text-span {
+		font-size: 6vh;
+	}
+
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+	/* Header */
+	.navbar-nav > li > a {
+		padding: 30px 15px 0 15px;
+	}
+
+	/* Home */
+	.home__hero--img-inner {
+		background-image: image-url('cat_play_home_991x661.jpg');
+		max-width: 991px;
+	}
+
+	.home__main--text-span {
+		font-size: 7vh;
+	}
+
+	/* Links */
+	.link-plate__anchor {
+		width: 18vw;
+	}
+
+	.link-plate h3 {
+		font-size: 3.5vw;
+	}
+
+	.link-plate img {
+		width: 14vw;
+	}
+
+}
+
+/* Large devices (desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+	/* Home */
+	.home__hero--img-inner {
+		background-image: image-url('cat_play_home_1200x800.jpg');
+		max-width: 1200px;
+	}
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+}

@@ -1,0 +1,58 @@
+<% if !notice.nil? %>  
+  <div class="container">  
+    <div id="error_explanation" class="notice-box">  
+      <%= notice %>  
+    </div>  
+  </div>  
+<% end %>  
+<h2>Send us a message</h2>  
+<%= form_for @message, :html => {:class => 'form-horizontal'} do |f| %>  
+  <% if @message.errors.any? %>  
+    <div class="container">  
+      <div id="error_explanation" class="error-box">  
+        <h3>  
+          <%= "#{pluralize(@message.errors.count, "error")} prohibited this message from being sent:" %>  
+        </h3>  
+        <ul>  
+          <% @message.errors.full_messages.each do |msg| %>  
+            <li><%= msg %></li>  
+          <% end %>  
+        <ul>  
+      </div>  
+    </div>  
+  <% end %>  
+ 
+  <div class="form-group">  
+    <%= f.label :name, class: 'col-sm-2 control-label form-label' %>  
+    <div class="col-sm-8">  
+      <%= f.text_field :name, class: 'form-control form-entry', placeholder: "Your name" %>
+    </div>  
+  </div>  
+ 
+  <div class="form-group">  
+    <%= f.label :email, class: 'col-sm-2 control-label form-label' %>  
+    <div class="col-sm-8">  
+      <%= f.email_field :email, class: 'form-control form-entry', placeholder: "Your email address" %>  
+    </div>  
+  </div>  
+ 
+  <div class="form-group">  
+    <%= f.label :subject, class: 'col-sm-2 control-label form-label' %>  
+    <div class="col-sm-8">  
+      <%= f.text_field :subject, class: 'form-control form-entry', placeholder: "What's the message about?" %>  
+    </div>  
+  </div>  
+ 
+  <div class="form-group">  
+    <%= f.label :message, "Message", class: 'col-sm-2 control-label form-label' %>  
+    <div class="col-sm-8">  
+      <%= f.text_area :message, class: 'form-control form-entry', placeholder: "Message body", rows: "4" %>  
+    </div>  
+  </div>  
+ 
+  <div class="form-group">  
+    <div class="col-sm-offset-2 col-sm-8 ">  
+      <%= f.submit 'Send', class: 'btn btn-default form-button', style: "width: 8em;" %>  
+    </div>  
+  </div>  
+<% end %> 
