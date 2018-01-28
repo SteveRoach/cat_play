@@ -1,2 +1,148 @@
-<h1>Gallery#cats</h1>
-<p>Find me in app/views/gallery/cats.html.erb</p>
+<% provide(:title, "Cats Gallery") %>
+<div class="container-fluid">
+	<h1 class="text-center">cats gallery</h1>
+	<div class="gallery">
+		<div class="row">
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 gallery-cell text-center">
+		      	<%= link_to image_url('gallery/cats/cats_gallery_01_480x640.jpg'), :'data-title' => "Baby Pearl", :'data-lightbox' => "Cats Gallery", :class => '' do %>
+					<%= image_tag 'gallery/cats/cats_gallery_01_150x200.jpg', :alt => "Baby Pearl", :class => "img-responsive img-rounded gallery-tall" %>
+	  			<% end %>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 gallery-cell text-center">
+		      	<%= link_to image_url('gallery/cats/cats_gallery_02_640x480.jpg'), :'data-title' => "Baby Dusty", :'data-lightbox' => "Cats Gallery", :class => '' do %>
+					<%= image_tag 'gallery/cats/cats_gallery_02_200x150.jpg', :alt => "Baby Dusty", :class => "img-responsive img-rounded gallery-wide" %>
+	  			<% end %>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 gallery-cell text-center">
+		      	<%= link_to image_url('gallery/cats/cats_gallery_03_480x640.jpg'), :'data-title' => "Pearl tries out her harness", :'data-lightbox' => "Cats Gallery" do %>
+					<%= image_tag 'gallery/cats/cats_gallery_03_150x200.jpg', :alt => "Pearl tries out her harness", :class => "img-responsive img-rounded gallery-tall" %>
+	  			<% end %>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 gallery-cell text-center">
+		      	<%= link_to image_url('gallery/cats/cats_gallery_04_480x640.jpg'), :'data-title' => "Off on their first trip", :'data-lightbox' => "Cats Gallery" do %>
+					<%= image_tag 'gallery/cats/cats_gallery_04_150x200.jpg', :alt => "Off on their first trip", :class => "img-responsive img-rounded gallery-tall" %>
+	  			<% end %>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 gallery-cell text-center">
+		      	<%= link_to image_url('gallery/cats/cats_gallery_05_480x640.jpg'), :'data-title' => "Big difference in size at first", :'data-lightbox' => "Cats Gallery" do %>
+					<%= image_tag 'gallery/cats/cats_gallery_05_150x200.jpg', :alt => "Big difference in size at first", :class => "img-responsive img-rounded gallery-tall" %>
+	  			<% end %>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 gallery-cell text-center">
+		      	<%= link_to image_url('gallery/cats/cats_gallery_06_640x480.jpg'), :'data-title' => "Dinner under way - thus the harnesses", :'data-lightbox' => "Cats Gallery" do %>
+					<%= image_tag 'gallery/cats/cats_gallery_06_200x150.jpg', :alt => "Dinner under way - thus the harnesses", :class => "img-responsive img-rounded gallery-wide" %>
+	  			<% end %>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 gallery-cell text-center">
+		      	<%= link_to image_url('gallery/cats/cats_gallery_07_640x480.jpg'), :'data-title' => "Passage planning", :'data-lightbox' => "Cats Gallery" do %>
+					<%= image_tag 'gallery/cats/cats_gallery_07_200x150.jpg', :alt => "Passage planning", :class => "img-responsive img-rounded gallery-wide" %>
+	  			<% end %>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 gallery-cell text-center">
+		      	<%= link_to image_url('gallery/cats/cats_gallery_08_480x640.jpg'), :'data-title' => "On the coach roof", :'data-lightbox' => "Cats Gallery" do %>
+					<%= image_tag 'gallery/cats/cats_gallery_08_150x200.jpg', :alt => "On the coach roof", :class => "img-responsive img-rounded gallery-tall" %>
+	  			<% end %>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 gallery-cell text-center">
+		      	<%= link_to image_url('gallery/cats/cats_gallery_09_480x640.jpg'), :'data-title' => "Pearl's portrait", :'data-lightbox' => "Cats Gallery" do %>
+					<%= image_tag 'gallery/cats/cats_gallery_09_150x200.jpg', :alt => "Pearl's portrait", :class => "img-responsive img-rounded gallery-tall" %>
+	  			<% end %>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 gallery-cell text-center">
+		      	<%= link_to image_url('gallery/cats/cats_gallery_10_480x640.jpg'), :'data-title' => "Dusty's portrait", :'data-lightbox' => "Cats Gallery" do %>
+					<%= image_tag 'gallery/cats/cats_gallery_10_150x200.jpg', :alt => "Dusty's portrait", :class => "img-responsive img-rounded gallery-tall" %>
+	  			<% end %>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 gallery-cell text-center">
+		      	<%= link_to image_url('gallery/cats/cats_gallery_11_640x480.jpg'), :'data-title' => "Playing on deck", :'data-lightbox' => "Cats Gallery" do %>
+					<%= image_tag 'gallery/cats/cats_gallery_11_200x150.jpg', :alt => "Playing on deck", :class => "img-responsive img-rounded gallery-wide" %>
+	  			<% end %>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 gallery-cell text-center">
+		      	<%= link_to image_url('gallery/cats/cats_gallery_12_480x640.jpg'), :'data-title' => "Dusty exploring the anchor locker", :'data-lightbox' => "Cats Gallery" do %>
+					<%= image_tag 'gallery/cats/cats_gallery_12_150x200.jpg', :alt => "Dusty exploring the anchor locker", :class => "img-responsive img-rounded gallery-tall" %>
+	  			<% end %>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 gallery-cell text-center">
+		      	<%= link_to image_url('gallery/cats/cats_gallery_13_640x480.jpg'), :'data-title' => "Pearl on the boom-bag - one of her favorite chill-out places", :'data-lightbox' => "Cats Gallery" do %>
+					<%= image_tag 'gallery/cats/cats_gallery_13_200x150.jpg', :alt => "Pearl on the boom-bag - one of her favorite chill-out places", :class => "img-responsive img-rounded gallery-wide" %>
+	  			<% end %>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 gallery-cell text-center">
+		      	<%= link_to image_url('gallery/cats/cats_gallery_14_640x480.jpg'), :'data-title' => "Hanging out", :'data-lightbox' => "Cats Gallery" do %>
+					<%= image_tag 'gallery/cats/cats_gallery_14_200x150.jpg', :alt => "Hanging out", :class => "img-responsive img-rounded gallery-wide" %>
+	  			<% end %>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 gallery-cell text-center">
+		      	<%= link_to image_url('gallery/cats/cats_gallery_15_480x640.jpg'), :'data-title' => "Pearl likes to freak us out by sitting in dangerous places", :'data-lightbox' => "Cats Gallery" do %>
+					<%= image_tag 'gallery/cats/cats_gallery_15_150x200.jpg', :alt => "Pearl likes to freak us out by sitting in dangerous places", :class => "img-responsive img-rounded gallery-tall" %>
+	  			<% end %>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 gallery-cell text-center">
+		      	<%= link_to image_url('gallery/cats/cats_gallery_16_640x480.jpg'), :'data-title' => "Dusty before the mast", :'data-lightbox' => "Cats Gallery" do %>
+					<%= image_tag 'gallery/cats/cats_gallery_16_200x150.jpg', :alt => "Dusty before the mast", :class => "img-responsive img-rounded gallery-wide" %>
+	  			<% end %>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 gallery-cell text-center">
+		      	<%= link_to image_url('gallery/cats/cats_gallery_17_580x640.jpg'), :'data-title' => "Pearl is a bit of a daddy's girl", :'data-lightbox' => "Cats Gallery" do %>
+					<%= image_tag 'gallery/cats/cats_gallery_17_180x200.jpg', :alt => "Pearl is a bit of a daddy's girl", :class => "img-responsive img-rounded gallery-tall" %>
+	  			<% end %>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 gallery-cell text-center">
+		      	<%= link_to image_url('gallery/cats/cats_gallery_18_640x480.jpg'), :'data-title' => "Pearl at sunset", :'data-lightbox' => "Cats Gallery" do %>
+					<%= image_tag 'gallery/cats/cats_gallery_18_200x150.jpg', :alt => "Pearl at sunset", :class => "img-responsive img-rounded gallery-wide" %>
+	  			<% end %>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 gallery-cell text-center">
+		      	<%= link_to image_url('gallery/cats/cats_gallery_19_640x480.jpg'), :'data-title' => "Cat storage", :'data-lightbox' => "Cats Gallery" do %>
+					<%= image_tag 'gallery/cats/cats_gallery_19_200x150.jpg', :alt => "Cat storage", :class => "img-responsive img-rounded gallery-wide" %>
+	  			<% end %>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 gallery-cell text-center">
+		      	<%= link_to image_url('gallery/cats/cats_gallery_20_640x480.jpg'), :'data-title' => "Pearl at sunset", :'data-lightbox' => "Cats Gallery" do %>
+					<%= image_tag 'gallery/cats/cats_gallery_20_200x150.jpg', :alt => "Pearl at sunset", :class => "img-responsive img-rounded gallery-wide" %>
+	  			<% end %>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 gallery-cell text-center">
+		      	<%= link_to image_url('gallery/cats/cats_gallery_21_640x480.jpg'), :'data-title' => "Pearl on the bimini", :'data-lightbox' => "Cats Gallery" do %>
+					<%= image_tag 'gallery/cats/cats_gallery_21_200x150.jpg', :alt => "Pearl on the bimini", :class => "img-responsive img-rounded gallery-wide" %>
+	  			<% end %>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 gallery-cell text-center">
+		      	<%= link_to image_url('gallery/cats/cats_gallery_22_640x480.jpg'), :'data-title' => "Dusty wanting a tummy-tickle", :'data-lightbox' => "Cats Gallery" do %>
+					<%= image_tag 'gallery/cats/cats_gallery_22_200x150.jpg', :alt => "Dusty wanting a tummy-tickle", :class => "img-responsive img-rounded gallery-wide" %>
+	  			<% end %>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 gallery-cell text-center">
+		      	<%= link_to image_url('gallery/cats/cats_gallery_23_480x640.jpg'), :'data-title' => "Pearl on the dinghy", :'data-lightbox' => "Cats Gallery" do %>
+					<%= image_tag 'gallery/cats/cats_gallery_23_150x200.jpg', :alt => "Pearl on the dinghy", :class => "img-responsive img-rounded gallery-tall" %>
+	  			<% end %>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 gallery-cell text-center">
+		      	<%= link_to image_url('gallery/cats/cats_gallery_24_640x480.jpg'), :'data-title' => "Dusty on deck", :'data-lightbox' => "Cats Gallery" do %>
+					<%= image_tag 'gallery/cats/cats_gallery_24_200x150.jpg', :alt => "Dusty on deck", :class => "img-responsive img-rounded gallery-wide" %>
+	  			<% end %>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 gallery-cell text-center">
+		      	<%= link_to image_url('gallery/cats/cats_gallery_25_480x640.jpg'), :'data-title' => "Pearl and the flags", :'data-lightbox' => "Cats Gallery" do %>
+					<%= image_tag 'gallery/cats/cats_gallery_25_150x200.jpg', :alt => "Pearl and the flags", :class => "img-responsive img-rounded gallery-tall" %>
+	  			<% end %>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 gallery-cell text-center">
+		      	<%= link_to image_url('gallery/cats/cats_gallery_26_480x640.jpg'), :'data-title' => "Pearl hanging with daddy", :'data-lightbox' => "Cats Gallery" do %>
+					<%= image_tag 'gallery/cats/cats_gallery_26_150x200.jpg', :alt => "Pearl hanging with daddy", :class => "img-responsive img-rounded gallery-tall" %>
+	  			<% end %>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 gallery-cell text-center">
+		      	<%= link_to image_url('gallery/cats/cats_gallery_27_480x640.jpg'), :'data-title' => "Pearl on the boom", :'data-lightbox' => "Cats Gallery" do %>
+					<%= image_tag 'gallery/cats/cats_gallery_27_150x200.jpg', :alt => "Pearl on the boom", :class => "img-responsive img-rounded gallery-tall" %>
+	  			<% end %>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 gallery-cell text-center">
+		      	<%= link_to image_url('gallery/cats/cats_gallery_28_640x480.jpg'), :'data-title' => "The girls asleep", :'data-lightbox' => "Cats Gallery" do %>
+					<%= image_tag 'gallery/cats/cats_gallery_28_200x150.jpg', :alt => "The girls asleep", :class => "img-responsive img-rounded gallery-wide" %>
+	  			<% end %>
+			</div>
+		</div>
+	</div>
+</div>

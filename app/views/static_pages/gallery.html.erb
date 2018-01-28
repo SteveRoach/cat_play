@@ -1,3 +1,30 @@
 <% provide(:title, "Gallery") %>
-<h1>StaticPages#gallery</h1>
-<p>Find me in app/views/static_pages/gallery.html.erb</p>
+<div class="container">
+	<h1 class="text-center">gallery</h1>
+	<div class="row">	
+		<div class="col-xs-6 col-sm-4">
+			<div class="gallery-plate">
+		      	<%= link_to root_path, class: 'center-block' do %>
+					<%= image_tag 'gallery/boat_400x400.jpg', alt: 'Boat Gallery', class: "center-block img-responsive img-rounded" %>
+					<h3>Boat</h3>
+      			<% end %>
+			</div>
+		</div>
+		<div class="col-xs-6 col-sm-4">
+			<div class="gallery-plate">
+		      	<%= link_to cats_path, class: 'center-block' do %>
+					<%= image_tag 'gallery/cats_400x400.jpg', alt: 'Cats Gallery', class: "center-block img-responsive img-rounded" %>
+					<h3>Cats</h3>
+      			<% end %>
+			</div>
+		</div>
+		<div class="col-xs-6 col-sm-4">
+			<div class="gallery-plate">
+		      	<%= link_to root_path, class: 'center-block' do %>
+					<%= image_tag 'gallery/people_400x400.jpg', alt: 'People Gallery', class: "center-block img-responsive img-rounded"  %>
+					<h3>People</h3>
+      			<% end %>
+			</div>
+		</div>
+	</div>	
+</div>

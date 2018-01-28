@@ -62,7 +62,7 @@ img {
 h1 {
 	font-family: $site__header--font-family;
 	font-weight: bold;
-	color: $site__foreground-colour;
+	color: $site__title-colour;
 }
 
 h2 {
@@ -230,6 +230,55 @@ a , a:hover, a:active, a:focus {
 
 .link-plate img {
 	width: 32vw;
+}
+
+/* Gallery Links */
+.gallery-plate {
+	margin-top: 20px;
+}
+
+.gallery-plate a {
+	position: relative;
+}
+
+.gallery-plate img {
+	border: 1px solid black;
+}
+
+.gallery-plate h3 {
+	position: absolute;
+	font-size: 6vw;
+	font-weight: bold;
+	color: white;
+	bottom: -8px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.gallery-row {
+}
+
+.gallery-cell {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 230px;
+}
+
+.gallery-cell a {
+}
+
+.gallery-cell img {
+}
+
+.gallery-wide {
+	width: 200px;
+	height: auto;
+}
+
+.gallery-tall {
+	height: 200px;
+	width: auto;
 }
 
 /* Pages */

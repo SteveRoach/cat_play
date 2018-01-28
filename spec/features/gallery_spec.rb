@@ -2,7 +2,7 @@ require "rails_helper"
  
 RSpec.feature "Gallery Pages", :type => :feature do  
     scenario "displays the Boat page elements correctly" do  
-        visit "gallery/boat" 
+        visit "boat" 
  
         # Page title 
         expect(page).to have_title('Cat Play | Boat Gallery')  
@@ -18,7 +18,7 @@ RSpec.feature "Gallery Pages", :type => :feature do
     end 
  
     scenario "displays the Cats page elements correctly" do  
-        visit "gallery/cats" 
+        visit "cats" 
  
         # Page title 
         expect(page).to have_title('Cat Play | Cats Gallery')  
@@ -34,7 +34,7 @@ RSpec.feature "Gallery Pages", :type => :feature do
     end 
  
     scenario "displays the People page elements correctly" do  
-        visit "gallery/people" 
+        visit "people" 
  
         # Page title 
         expect(page).to have_title('Cat Play | People Gallery')  
@@ -49,6 +49,4 @@ RSpec.feature "Gallery Pages", :type => :feature do
         end  
     end 
  
- 
-end  
- 
+ end  
