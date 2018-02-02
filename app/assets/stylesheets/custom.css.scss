@@ -255,9 +255,6 @@ a , a:hover, a:active, a:focus {
 	transform: translateX(-50%);
 }
 
-.gallery-row {
-}
-
 .gallery-cell {
 	display: flex;
 	align-items: center;
@@ -265,23 +262,22 @@ a , a:hover, a:active, a:focus {
 	height: 230px;
 }
 
-.gallery-cell a {
-}
-
-.gallery-cell img {
-}
-
 .gallery-wide {
 	width: 200px;
 	height: auto;
+	border: 1px solid black;
 }
 
 .gallery-tall {
 	height: 200px;
 	width: auto;
+	border: 1px solid black;
 }
 
 /* Pages */
+.page-title {
+	font-size: 8em;
+}
 .page-logo__outer {
 	padding: 10px 0;
 }
