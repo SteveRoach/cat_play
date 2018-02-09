@@ -1,3 +1,59 @@
 <% provide(:title, "People Gallery") %>
-<h1>Gallery#people</h1>
-<p>Find me in app/views/gallery/people.html.erb</p>
+<div class="container-fluid">
+	<h1 class="text-center page-title">people</h1>
+	<div class="row">
+		<div class="col-lg-1"></div>
+		<div class="col-lg-10 text-center gallery-text">
+			<span class="text-center">Here are pics of a few the brilliant people we have met along the way. Not only do we get to meet truely lovely people, there are a lot of brains to pick as regards fixing boats up. My problem is that I am not very good at remembering to take photos - there are a lot of pics missing that really should be here. Must do better. Will do better.</span>
+		</div>
+	</div>
+	<div class="gallery">
+		<div class="row">
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 gallery-cell text-center">
+				<%= link_to image_url('gallery/people/people_gallery_01_480x640.jpg'), :'data-title' => "Bruce & Sheryl - proud new owners of Red Ocober", :'data-lightbox' => "People Gallery", :class => '' do %>
+					<%= image_tag 'gallery/people/people_gallery_01_150x200.jpg', :alt => "Bruce & Sheryl - proud new owners of Red Ocober", :class => "img-responsive img-rounded gallery-tall" %>
+				<% end %>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 gallery-cell text-center">
+				<%= link_to image_url('gallery/people/people_gallery_02_640x480.jpg'), :'data-title' => "Caroline & Walter - Sea Change", :'data-lightbox' => "People Gallery", :class => '' do %>
+					<%= image_tag 'gallery/people/people_gallery_02_200x150.jpg', :alt => "Caroline & Walter - Sea Change", :class => "img-responsive img-rounded gallery-wide" %>
+				<% end %>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 gallery-cell text-center">
+				<%= link_to image_url('gallery/people/people_gallery_03_640x480.jpg'), :'data-title' => "Sheryl & Tim - Lazy Bones", :'data-lightbox' => "People Gallery", :class => '' do %>
+					<%= image_tag 'gallery/people/people_gallery_03_200x150.jpg', :alt => "Sheryl & Tim - Lazy Bones", :class => "img-responsive img-rounded gallery-wide" %>
+				<% end %>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 gallery-cell text-center">
+				<%= link_to image_url('gallery/people/people_gallery_04_640x480.jpg'), :'data-title' => "Martin & Monica - Walks On Water (WOW)", :'data-lightbox' => "People Gallery", :class => '' do %>
+					<%= image_tag 'gallery/people/people_gallery_04_200x150.jpg', :alt => "Martin & Monica - Walks On Water (WOW)", :class => "img-responsive img-rounded gallery-wide" %>
+				<% end %>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 gallery-cell text-center">
+				<%= link_to image_url('gallery/people/people_gallery_05_640x480.jpg'), :'data-title' => "Beach people - sundowners on GKI", :'data-lightbox' => "People Gallery", :class => '' do %>
+					<%= image_tag 'gallery/people/people_gallery_05_200x150.jpg', :alt => "Beach people - sundowners on GKI", :class => "img-responsive img-rounded gallery-wide" %>
+				<% end %>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 gallery-cell text-center">
+				<%= link_to image_url('gallery/people/people_gallery_06_640x480.jpg'), :'data-title' => "Bill & Linda - Valiam", :'data-lightbox' => "People Gallery", :class => '' do %>
+					<%= image_tag 'gallery/people/people_gallery_06_200x150.jpg', :alt => "Bill & Linda - Valiam", :class => "img-responsive img-rounded gallery-wide" %>
+				<% end %>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 gallery-cell text-center">
+				<%= link_to image_url('gallery/people/people_gallery_07_640x480.jpg'), :'data-title' => "Bill & Linda - celebrating a few things. With camels.", :'data-lightbox' => "People Gallery", :class => '' do %>
+					<%= image_tag 'gallery/people/people_gallery_07_200x150.jpg', :alt => "Bill & Linda - celebrating a few things. With camels.", :class => "img-responsive img-rounded gallery-wide" %>
+				<% end %>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 gallery-cell text-center">
+				<%= link_to image_url('gallery/people/people_gallery_08_640x480.jpg'), :'data-title' => "Bruce & Cheryle - Sea Nymph", :'data-lightbox' => "People Gallery", :class => '' do %>
+					<%= image_tag 'gallery/people/people_gallery_08_200x150.jpg', :alt => "Bruce & Cheryle - Sea Nymph", :class => "img-responsive img-rounded gallery-wide" %>
+				<% end %>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 gallery-cell text-center">
+				<%= link_to image_url('gallery/people/people_gallery_09_480x640.jpg'), :'data-title' => "Jen & Barry (and Frankie) - Vera Jean", :'data-lightbox' => "People Gallery", :class => '' do %>
+					<%= image_tag 'gallery/people/people_gallery_09_150x200.jpg', :alt => "Jen & Barry (and Frankie) - Vera Jean", :class => "img-responsive img-rounded gallery-tall" %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

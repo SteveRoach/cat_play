@@ -1,10 +1,13 @@
 class GalleryController < ApplicationController
-  def cats
+  def gallery_boat
   end
 
-  def boat
+  def gallery_crew
   end
 
-  def people
+  def gallery_cats
+  end
+
+  def gallery_people
   end
 end

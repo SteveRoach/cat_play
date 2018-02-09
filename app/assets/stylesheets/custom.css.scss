@@ -210,7 +210,7 @@ a , a:hover, a:active, a:focus {
 	text-align: center;
 	border: black solid 2px;
 	border-radius: 10px;
-	width: 42vw;
+	width: 90%;
 	font-family: $site__icon--font-family;
 	background-color: $site__icon-colour;
 	color: $site__foreground-colour;
@@ -229,10 +229,17 @@ a , a:hover, a:active, a:focus {
 }
 
 .link-plate img {
-	width: 32vw;
+	width: 80%;
 }
 
 /* Gallery Links */
+.gallery-text {
+	font-family: $site__header--font-family;
+	font-weight: bold;
+	color: $site__title-colour;
+	font-size: 2em;
+}
+
 .gallery-plate {
 	margin-top: 20px;
 }
@@ -243,6 +250,7 @@ a , a:hover, a:active, a:focus {
 
 .gallery-plate img {
 	border: 1px solid black;
+	width: 200px;
 }
 
 .gallery-plate h3 {
@@ -372,6 +380,10 @@ a , a:hover, a:active, a:focus {
 	padding-right: 1em;
 }
 
+.short-page-footer {
+	padding: 200px 0 0 0;
+}
+
 /* Media queries */
 /* Extra small devices (portrait phones, less than 576px)
    No media query since this is the default in Bootstrap */
@@ -408,16 +420,19 @@ a , a:hover, a:active, a:focus {
 	}
 
 	/* Links */
+	.link-plate {
+	}
+
 	.link-plate__anchor {
-		width: 18vw;
+		width: 90%;
 	}
 
 	.link-plate h3 {
-		font-size: 3.5vw;
+		font-size: 3vw;
 	}
 
 	.link-plate img {
-		width: 14vw;
+		width: 70%;
 	}
 
 }
