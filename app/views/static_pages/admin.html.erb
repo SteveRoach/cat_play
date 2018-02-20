@@ -1,0 +1,14 @@
+<% provide(:title, "Admin") %>
+<h1 class="text-center">admin</h1>
+<div class="row">	
+	<div class="col-xs-12">
+		<% if logged_in? %>
+			<p>ADMIN</p>
+		<% else %>
+			<div class="error-box admin-error">  
+				<h3>Only a logged-in administrator can use this screen.</h3>
+			</div>  
+		<% end %>
+	</div>
+</div>	
+

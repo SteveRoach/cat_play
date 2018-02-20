@@ -1,46 +1,44 @@
 <% provide(:title, "Gallery") %>
-<div class="container">
-	<h1 class="text-center page-title">gallery</h1>
-	<div class="row">
-		<div class="col-lg-1"></div>
-		<div class="col-lg-10 text-center gallery-text">
-			<span class="text-center">Galleries of photos. These have been mostly taken while we were cruising. Click the pic to blow it up.</span>
+<h1 class="text-center page-title">gallery</h1>
+<div class="row">
+	<div class="col-lg-1"></div>
+	<div class="col-lg-10 text-center gallery-text">
+		<span class="text-center">Galleries of photos. These have been mostly taken while we were cruising. Click the pic to blow it up.</span>
+	</div>
+</div>
+<div class="row">	
+	<div class="col-xs-6 col-sm-3">
+		<div class="link-plate">
+	      	<%= link_to gallery_boat_path, class: 'center-block link-plate__anchor' do %>
+				<%= image_tag 'link_gallery_boat_400x400.png', alt: 'Boat', class: "center-block"  %>
+				<h3 class: "link-plate__h3">Boat</h3>
+  			<% end %>
 		</div>
 	</div>
-	<div class="row">	
-		<div class="col-xs-6 col-sm-3">
-			<div class="link-plate">
-		      	<%= link_to gallery_boat_path, class: 'center-block link-plate__anchor' do %>
-					<%= image_tag 'link_gallery_boat_400x400.png', alt: 'Boat', class: "center-block"  %>
-					<h3 class: "link-plate__h3">Boat</h3>
-      			<% end %>
-			</div>
+	<div class="col-xs-6 col-sm-3">
+		<div class="link-plate">
+	      	<%= link_to gallery_crew_path, class: 'center-block link-plate__anchor' do %>
+				<%= image_tag 'link_gallery_crew_400x400.png', alt: 'Crew', class: "center-block"  %>
+				<h3 class: "link-plate__h3">Crew</h3>
+  			<% end %>
 		</div>
-		<div class="col-xs-6 col-sm-3">
-			<div class="link-plate">
-		      	<%= link_to gallery_crew_path, class: 'center-block link-plate__anchor' do %>
-					<%= image_tag 'link_gallery_crew_400x400.png', alt: 'Crew', class: "center-block"  %>
-					<h3 class: "link-plate__h3">Crew</h3>
-      			<% end %>
-			</div>
+	</div>
+	<div class="col-xs-6 col-sm-3">
+		<div class="link-plate">
+	      	<%= link_to gallery_cats_path, class: 'center-block link-plate__anchor' do %>
+				<%= image_tag 'link_gallery_cats_400x400.png', alt: 'Cats', class: "center-block"  %>
+				<h3 class: "link-plate__h3">Cats</h3>
+  			<% end %>
 		</div>
-		<div class="col-xs-6 col-sm-3">
-			<div class="link-plate">
-		      	<%= link_to gallery_cats_path, class: 'center-block link-plate__anchor' do %>
-					<%= image_tag 'link_gallery_cats_400x400.png', alt: 'Cats', class: "center-block"  %>
-					<h3 class: "link-plate__h3">Cats</h3>
-      			<% end %>
-			</div>
+	</div>
+	<div class="col-xs-6 col-sm-3">
+		<div class="link-plate">
+	      	<%= link_to gallery_people_path, class: 'center-block link-plate__anchor' do %>
+				<%= image_tag 'link_gallery_people_400x400.png', alt: 'People', class: "center-block"  %>
+				<h3 class: "link-plate__h3">People</h3>
+  			<% end %>
 		</div>
-		<div class="col-xs-6 col-sm-3">
-			<div class="link-plate">
-		      	<%= link_to gallery_people_path, class: 'center-block link-plate__anchor' do %>
-					<%= image_tag 'link_gallery_people_400x400.png', alt: 'People', class: "center-block"  %>
-					<h3 class: "link-plate__h3">People</h3>
-      			<% end %>
-			</div>
-		</div>
-	</div>	
-</div>
+	</div>
+</div>	
 <dir class="short-page-footer"></dir>
 

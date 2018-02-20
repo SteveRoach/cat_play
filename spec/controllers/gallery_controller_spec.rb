@@ -18,6 +18,22 @@ RSpec.describe GalleryController, type: :controller do
     end  
   end  
   
+  describe "GET #crew" do  
+    before(:each) { get :crew }   
+ 
+    it "returns http success" do  
+      expect(response).to have_http_status(:success)  
+    end  
+ 
+    it "renders the layout; application" do   
+      expect(response).to render_template(layout: :application)   
+    end   
+ 
+    it "renders the template; crew" do   
+      expect(response).to render_template(:crew)  
+    end  
+  end  
+  
   describe "GET #cats" do  
     before(:each) { get :cats }   
  

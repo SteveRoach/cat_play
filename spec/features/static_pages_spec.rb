@@ -97,5 +97,21 @@ RSpec.feature "Render Static Pages", :type => :feature do
         end  
     end 
  
+    scenario "displays the Admin page elements correctly" do  
+        visit "/admin"  
+ 
+        # Page title 
+        expect(page).to have_title('Cat Play | Admin')  
+ 
+        # Favicon
+        icon_link_count = page.all(:css, 'link[rel~="icon"]', visible: false).count 
+        expect(icon_link_count).to eql(1)  
+ 
+        page.all(:css, 'link[rel~="icon"]', visible: false).each do |fav|  
+            visit fav[:href]  
+            expect(page).to have_http_status(:success)  
+        end  
+    end 
+ 
 end  
  

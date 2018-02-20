@@ -23,6 +23,7 @@ group :development, :test do
   gem 'byebug',                 '3.4.0'                    # Basic
   gem 'spring-commands-rspec'
   gem 'rspec-rails',            '~> 3.4'                   # Testing
+  gem 'database_cleaner',       '~> 1.5'                   # Testing
   gem 'factory_girl_rails',     '~> 4.5.0'                 # Testing
   gem 'capybara',               '~> 2.5'                   # Testing
   gem 'faker'                                              # Testing
@@ -35,7 +36,6 @@ end
 
 group :test do
   gem 'shoulda-matchers',       '~> 3.0', require: false   # Testing
-  gem 'database_cleaner',       '~> 1.5'                   # Testing
 end
 
 group :production do

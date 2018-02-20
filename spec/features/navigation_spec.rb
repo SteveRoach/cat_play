@@ -40,7 +40,31 @@ RSpec.feature "Site navigation", :type => :feature do
     scenario "'Gallery' navigation goes to the Gallery page" do  
         visit "/" 
         click_link('Gallery') 
-        expect(page).to have_content('StaticPages#gallery') 
+        expect(page).to have_content('gallery') 
+    end 
+ 
+    scenario "'Boat Gallery' navigation goes to the Boat Gallery page" do  
+        visit "/gallery" 
+        click_link('Boat') 
+        expect(page).to have_content('boat') 
+    end 
+ 
+    scenario "'Crew Gallery' navigation goes to the Crew Gallery page" do  
+        visit "/gallery" 
+        click_link('Crew') 
+        expect(page).to have_content('crew') 
+    end 
+ 
+    scenario "'Cats Gallery' navigation goes to the Cats Gallery page" do  
+        visit "/gallery" 
+        click_link('Cats') 
+        expect(page).to have_content('cats') 
+    end 
+ 
+    scenario "'People Gallery' navigation goes to the People Gallery page" do  
+        visit "/gallery" 
+        click_link('People') 
+        expect(page).to have_content('people') 
     end 
  
 end  

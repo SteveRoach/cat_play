@@ -362,6 +362,21 @@ a , a:hover, a:active, a:focus {
     font-weight: bold; 
 } 
 
+/* Flash */
+.flash-box {
+	padding: 10px 0 0 0;
+	font-size: 1.5em;
+	text-align: center;
+}
+
+/* Admin Error Box */
+.admin-error {
+    background-color: LightPink;
+    color: Crimson;
+	font-style: bold;
+	text-align: center;
+}
+
 /* Footer */
 .footer {
 	padding: 20px 0 0 0;
@@ -381,7 +396,7 @@ a , a:hover, a:active, a:focus {
 }
 
 .short-page-footer {
-	padding: 200px 0 0 0;
+	padding: 300px 0 0 0;
 }
 
 /* Media queries */
