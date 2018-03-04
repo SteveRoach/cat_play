@@ -80,18 +80,5 @@ RSpec.describe StaticPagesController, type: :controller do
     end 
   end
 
-  describe "GET #admin" do
-    before(:each) { get :admin } 
-    it "returns http success" do
-      expect(response).to have_http_status(:success)
-    end
-    it "renders the layout; application" do 
-      expect(response).to render_template(layout: :application) 
-    end 
-    it "renders the template; gallery" do 
-      expect(response).to render_template(:admin) 
-    end 
-  end
-
 end 
 

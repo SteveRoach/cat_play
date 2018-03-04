@@ -1,0 +1,42 @@
+<% provide(:title, "Add Journal") %>
+<h1 class="text-center">add journal entry</h1>
+<%= form_for @journal, :html => {:class => 'form-horizontal'} do |f| %>  
+  <% if @journal.errors.any? %>  
+    <div id="error_explanation" class="error-box">  
+      <h3>  
+        <%= "#{pluralize(@journal.errors.count, "error")} stopped this Journal Entry from being added:" %>  
+      </h3>  
+      <div>
+        <ul>  
+          <% @journal.errors.full_messages.each do |msg| %>  
+            <li><%= msg %></li>  
+          <% end %>  
+        </ul>
+      </div>
+    </div>  
+  <% end %>  
+  <div class="form-group">  
+    <%= f.label :title, class: 'col-sm-2 control-label form-label' %>  
+    <div class="col-sm-8">  
+      <%= f.text_field :title, class: 'form-control form-entry', placeholder: "Title" %>
+    </div>  
+  </div>  
+  <div class="form-group">  
+    <%= f.label :posted_date, class: 'col-sm-2 control-label form-label' %>  
+    <div class="col-sm-8">  
+      <%= f.text_field :posted_date, class: 'form-control form-entry datepicker', placeholder: "Date posted" %> 
+    </div>  
+  </div>  
+  <div class="form-group">  
+    <%= f.label :url, class: 'col-sm-2 control-label form-label' %>  
+    <div class="col-sm-8">  
+      <%= f.text_field :url, class: 'form-control form-entry', placeholder: "URL" %> 
+    </div>  
+  </div>  
+  <div class="form-group">  
+    <div class="col-sm-offset-2 col-sm-8 ">  
+      <%= f.submit 'Save', class: 'btn btn-default form-button', style: "width: 8em;" %>  
+    </div>  
+  </div>  
+<% end %> 
+<dir class="short-page-footer"></dir>

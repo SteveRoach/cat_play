@@ -101,7 +101,7 @@ RSpec.feature "Render Static Pages", :type => :feature do
         visit "/admin"  
  
         # Page title 
-        expect(page).to have_title('Cat Play | Admin')  
+        expect(page).to have_title('Cat Play | Log In')  
  
         # Favicon
         icon_link_count = page.all(:css, 'link[rel~="icon"]', visible: false).count 

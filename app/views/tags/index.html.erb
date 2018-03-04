@@ -1,0 +1,22 @@
+<% provide(:title, "Maintain Tags") %>
+<h1 class="text-center">maintain tags</h1>
+<div class="row text-center">
+		<%= will_paginate %>
+</div>
+<div class="row">
+	<ul class=admin-list>
+		<% @tags.each do |tag| %>
+			<li>
+				<div class="col-md-5 col-md-offset-3 col-xs-6 col-xs-offset-2">
+					<%= tag.name %>
+				</div>
+				<div class="col-md-1 col-xs-2">
+					<%= link_to "Delete", tag, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default form-button delete-button" %>
+				</div>
+			</li>
+		<% end %>
+	</ul>
+</div>
+<div class="row text-center">
+		<%= will_paginate %>
+</div>

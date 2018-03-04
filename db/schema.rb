@@ -11,10 +11,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180213104306) do
+ActiveRecord::Schema.define(version: 20180222114354) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "journal_tags", force: :cascade do |t|
+    t.integer  "journal_id"
+    t.integer  "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "journal_tags", ["journal_id"], name: "index_journal_tags_on_journal_id", using: :btree
+  add_index "journal_tags", ["tag_id"], name: "index_journal_tags_on_tag_id", using: :btree
+
+  create_table "journals", force: :cascade do |t|
+    t.string   "title"
+    t.date     "posted_date"
+    t.string   "url"
+    t.integer  "section_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "journals", ["section_id"], name: "index_journals_on_section_id", using: :btree
+
+  create_table "sections", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email"
@@ -26,4 +59,7 @@ ActiveRecord::Schema.define(version: 20180213104306) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
+  add_foreign_key "journal_tags", "journals"
+  add_foreign_key "journal_tags", "tags"
+  add_foreign_key "journals", "sections"
 end

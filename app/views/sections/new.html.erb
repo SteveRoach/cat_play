@@ -1,0 +1,30 @@
+<% provide(:title, "Add Section") %>
+<h1 class="text-center">add section</h1>
+<%= form_for @section, :html => {:class => 'form-horizontal'} do |f| %>  
+  <% if @section.errors.any? %>  
+    <div id="error_explanation" class="error-box">  
+      <h3>  
+        <%= "#{pluralize(@section.errors.count, "error")} stopped this Section from being added:" %>  
+      </h3>  
+      <div>
+        <ul>  
+          <% @section.errors.full_messages.each do |msg| %>  
+            <li><%= msg %></li>  
+          <% end %>  
+        </ul>
+      </div>
+    </div>  
+  <% end %>  
+  <div class="form-group">  
+    <%= f.label :name, class: 'col-sm-2 control-label form-label' %>  
+    <div class="col-sm-8">  
+      <%= f.text_field :name, class: 'form-control form-entry', placeholder: "Section Name" %>
+    </div>  
+  </div>  
+  <div class="form-group">  
+    <div class="col-sm-offset-2 col-sm-8 ">  
+      <%= f.submit 'Save', class: 'btn btn-default form-button', style: "width: 8em;" %>  
+    </div>  
+  </div>  
+<% end %> 
+<dir class="short-page-footer"></dir>

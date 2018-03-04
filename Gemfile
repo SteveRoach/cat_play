@@ -18,6 +18,7 @@ gem 'turbolinks',               '2.3.0'                    # Basic
 gem 'jbuilder',                 '2.2.3'                    # Basic
 gem 'sdoc',                     '0.4.0', group: :doc       # Basic
 gem 'pg',                       '0.17.1'                   # Basic
+gem 'bootstrap-datepicker-rails'                   # Forms
 
 group :development, :test do
   gem 'byebug',                 '3.4.0'                    # Basic

@@ -3,12 +3,52 @@
 <div class="row">	
 	<div class="col-xs-12">
 		<% if logged_in? %>
-			<p>ADMIN</p>
+			<h2>Maintain Journals</h2>
+			<ul class=admin-list>
+				<li>
+					<div class="col-md-10 col-md-offset-1">
+						<%= link_to "Add Journal", new_journal_path %>
+					</div>
+				</li>
+				<li>
+					<div class="col-md-10 col-md-offset-1">
+						<%= link_to "List / Delete Journal Entries", journals_path %>
+					</div>
+
+				</li>
+			</ul>
+			<h2>Maintain Sections</h2>
+			<ul class=admin-list>
+				<li>
+					<div class="col-md-10 col-md-offset-1">
+						<%= link_to "Add Sections", new_section_path %>
+					</div>
+				</li>
+				<li>
+					<div class="col-md-10 col-md-offset-1">
+						<%= link_to "List / Delete Sections", sections_path %>
+					</div>
+
+				</li>
+			</ul>
+			<h2>Maintain Tags</h2>
+			<ul class=admin-list>
+				<li>
+					<div class="col-md-10 col-md-offset-1">
+						<%= link_to "Add Tags", new_tag_path %>
+					</div>
+				</li>
+				<li>
+					<div class="col-md-10 col-md-offset-1">
+						<%= link_to "List / Delete Tags", tags_path %>
+					</div>
+
+				</li>
+			</ul>
 		<% else %>
 			<div class="error-box admin-error">  
 				<h3>Only a logged-in administrator can use this screen.</h3>
 			</div>  
 		<% end %>
 	</div>
-</div>	
-
+</div>

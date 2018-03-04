@@ -69,7 +69,7 @@ h2 {
 	font-family: $site__content--font-family;
 	font-size: 2.7em;
 	font-weight: bold;
-	color: $site__foreground-colour;
+	color: $site__title-colour;
 }
 
 p {
@@ -352,6 +352,14 @@ a , a:hover, a:active, a:focus {
     margin: 10px auto; 
 } 
  
+.error-box div { 
+    margin: 0 0 0 30px; 
+} 
+ 
+.error-box li { 
+	font-size: 1.6em;
+} 
+ 
 .notice-box { 
     width: 50%; 
     border: 5px solid black; 
@@ -390,13 +398,91 @@ a , a:hover, a:active, a:focus {
 
 .footer p {
 	font-size: 1.3em;
-	height: 10px;
+	height: 30px;
 	color: white;
 	padding-right: 1em;
 }
 
 .short-page-footer {
-	padding: 300px 0 0 0;
+	padding: 400px 0 0 0;
+}
+
+.alert-success {
+	background-color: #7ADD52;
+}
+
+.admin-list {
+	list-style: none;
+	margin: 0;
+	font-size: 2em;
+	color: $site__title-colour;
+	li {
+		overflow: auto;
+		padding: 5px 0;
+	} 
+} 
+ 
+.admin-list a { 
+	color: $site__title-colour;
+}
+
+.pagination {
+	font-size: 1.3em;
+}
+
+.pagination > .active > a,
+.pagination > .active > a:hover, 
+.pagination > .active > a:focus, 
+.pagination > .active > span, 
+.pagination > .active > span:hover, 
+.pagination > .active > span:focus {
+	background-color: $site__title-colour;
+}
+
+.pagination > li > a,
+.pagination > li > span {
+    padding: 6px 7px;
+	color: $site__title-colour;
+}
+
+.pagination > li > a:hover, 
+.pagination > li > a:focus, 
+.pagination > li > span:hover, 
+.pagination > li > span:focus {
+	background-color: #eeeeee;
+	border-color: #ddd;
+}
+
+.delete-button {
+	color: black !important;
+}
+
+.journal-date {
+	text-align: left;
+}
+
+.journal-field {
+	background-color: $site__form-input--background-colour;
+	margin: 1px 0;
+}
+
+.journal-url {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.journal-button {
+	margin-top: 2px;
+}
+
+.journal-tapered-line {
+	margin-top: 10px;
+}
+
+.journal-url-loggedout a {
+	text-decoration: underline;
+	padding: 0;
 }
 
 /* Media queries */
@@ -415,6 +501,14 @@ a , a:hover, a:active, a:focus {
 		font-size: 6vh;
 	}
 
+	.pagination {
+/*		font-size: 1.2em;*/
+	}
+
+	.pagination > li > a,
+	.pagination > li > span {
+	    padding: 6px 12px;
+	}
 }
 
 /* Medium devices (tablets, 768px and up) */
@@ -458,6 +552,22 @@ a , a:hover, a:active, a:focus {
 	.home__hero--img-inner {
 		background-image: image-url('cat_play_home_1200x800.jpg');
 		max-width: 1200px;
+	}
+
+	.journal-date {
+		text-align: right;
+	}
+
+	.journal-date-loggedout {
+		text-align: left;
+	}
+
+	.journal-field {
+		margin: 1px;
+	}
+
+	.journal-url-loggedout {
+		width: 41.45%;
 	}
 }
 

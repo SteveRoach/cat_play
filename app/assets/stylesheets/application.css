@@ -12,5 +12,6 @@
  *
  *= require_self
  *= require lightbox.min
+ *= require bootstrap-datepicker
  *= require custom
  */
