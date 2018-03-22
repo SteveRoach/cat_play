@@ -22,13 +22,36 @@ class SectionsController < ApplicationController
   		flash.now[:warning] = "No Sections found."
   	end
     
-  	@sections = Section.paginate(page: params[:page], per_page: 10)
+  	@sections = Section.order(:name).paginate(page: params[:page], per_page: 10)
   end
 
   def destroy
-  	Section.find(params[:id]).destroy
-  	flash[:success] = "Section deleted."
+  	section_usage_count = Journal.where("section_id = ?", params[:id]).count
+
+    if section_usage_count == 0
+      Section.find(params[:id]).destroy
+    	flash[:success] = "Section deleted."
+    else
+      flash[:danger] = "This Section is linked to one or more Articles."
+    end
+
   	redirect_to sections_path
+  end
+
+  def edit
+    @section = Section.find(params[:id])
+  end
+
+  def update
+    @section = Section.find(params[:id])
+
+    if @section.update_attributes(user_params)
+      flash[:success] = "Section updated."
+
+      redirect_to sections_path
+    else
+      render 'edit'
+    end
   end
 
   private

@@ -1,5 +1,5 @@
-<% provide(:title, "Maintain Sections") %>
-<h1 class="text-center">list / delete sections</h1>
+<% provide(:title, "Edit Sections") %>
+<h1 class="text-center">edit sections</h1>
 <div class="row text-center">
 	<%= will_paginate %>
 </div>
@@ -7,13 +7,17 @@
 	<ul class=admin-list>
 		<% @sections.each do |section| %>
 			<li>
-				<div class="col-md-5 col-md-offset-3 col-xs-6 col-xs-offset-2">
+				<div class="col-md-7 col-md-offset-1 col-sm-6 col-sm-offset-1 col-xs-12">
 					<%= section.name %>
 				</div>
-				<div class="col-md-1 col-xs-2">
-					<%= link_to "Delete", section, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default form-button delete-button" %>
+				<div class="col-md-3 col-sm-4 col-xs-12 section-buttons">
+					<%= link_to "Delete", section, method: :delete, class: "btn btn-default form-button delete-button" %>
+					<%= link_to "Update", edit_section_path(:id => section.id), class: "btn btn-default form-button delete-button" %>
 				</div>
 			</li>
+			<div class="">
+				<div class="tapered-line section-tapered-line"></div>
+			</div>
 		<% end %>
 	</ul>
 </div>

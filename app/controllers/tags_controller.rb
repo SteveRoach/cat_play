@@ -22,13 +22,36 @@ class TagsController < ApplicationController
   		flash.now[:warning] = "No Tags found."
   	end
 
-  	@tags = Tag.paginate(page: params[:page], per_page: 10)
+  	@tags = Tag.order(:name).paginate(page: params[:page], per_page: 10)
   end
 
   def destroy
-  	Tag.find(params[:id]).destroy
-  	flash[:success] = "Tag deleted."
-  	redirect_to tags_path
+    tag_usage_count = JournalTag.where("tag_id = ?", params[:id]).count
+
+    if tag_usage_count == 0
+      Tag.find(params[:id]).destroy
+      flash[:success] = "Tag deleted."
+    else
+      flash[:danger] = "This Tag is linked to one or more Articles."
+    end
+
+    redirect_to tags_path
+  end
+
+  def edit
+    @tag = Tag.find(params[:id])
+  end
+
+  def update
+    @tag = Tag.find(params[:id])
+
+    if @tag.update_attributes(user_params)
+      flash[:success] = "Tag updated."
+
+      redirect_to tags_path
+    else
+      render 'edit'
+    end
   end
 
   private

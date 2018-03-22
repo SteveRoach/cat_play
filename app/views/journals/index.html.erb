@@ -1,39 +1,28 @@
-<% provide(:title, "Maintain Journal Entries") %>
-<h1 class="text-center">list / delete journal entries</h1>
+<% provide(:title, "Edit Journal Entries") %>
+<h1 class="text-center">edit journal entries</h1>
 <div class="row text-center">
 	<%= will_paginate %>
 </div>
 <div class="row">
 	<div class="col-md-10 col-md-offset-1">
 		<ul class=admin-list>
-			<% @journals.each do |journal| %>
+			<% @journal_array.each do |journal| %>
 				<li>
-			      	<% if logged_in? %>
-						<div class="col-md-8 col-xs-12 journal-field">
-							<%= journal.title %>
-						</div>
-						<div class="col-md-3 col-xs-12 journal-date journal-field">
-							<%= journal.posted_date.strftime("%d-%b-%Y") %>
-						</div>
-						<div class="col-md-8 col-xs-12 journal-field journal-url">
-							<%= journal.url %>
-						</div>
-						<div class="col-md-3 col-xs-12 text-right journal-button">
-							<%= link_to "Delete", journal, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default form-button delete-button" %>
-						</div>
-					<% else %>
-						<div class="col-md-11 col-xs-12 journal-field">
-							<%= journal.title %>
-						</div>
-						<div class="col-md-6 col-xs-12 journal-date-loggedout journal-field">
-							<%= journal.posted_date.strftime("%d-%b-%Y") %>
-						</div>
-						<div class="col-md-5 col-xs-12 journal-field journal-url journal-url-loggedout">
-							<%= link_to "Go there...", journal.url, class: "journal-field journal-url" %>
-						</div>
-      				<% end %>
-					<div class="col-md-11 col-xs-12">
-						<div class="tapered-line journal-tapered-line"></div>
+					<div class="col-md-11 col-xs-12 journal-field">
+						<%= journal[:title] %>
+					</div>
+					<div class="col-md-11 col-xs-12 journal-field">
+						<%= journal[:posted_date].strftime("%d-%b-%Y") %>
+					</div>
+					<div class="col-md-11 col-xs-12 journal-field journal-url">
+						<%= journal[:url] %>
+					</div>
+					<div class="col-md-11 col-xs-12 journal-field journal-url">
+						<%= journal[:tags] %>
+					</div>
+					<div class="col-md-11 col-xs-12 text-right journal-button">
+						<%= link_to "Update", edit_journal_path(:id => journal[:id]), class: "btn btn-default form-button delete-button" %>
+						<%= link_to "Delete", journal, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default form-button delete-button" %>
 					</div>
 				</li>
 			<% end %>

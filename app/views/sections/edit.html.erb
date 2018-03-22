@@ -1,10 +1,10 @@
-<% provide(:title, "Create Section") %>
-<h1 class="text-center">create section</h1>
+<% provide(:title, "Edit Section") %>
+<h1 class="text-center">edit section</h1>
 <%= form_for @section, :html => {:class => 'form-horizontal'} do |f| %>  
   <% if @section.errors.any? %>  
     <div id="error_explanation" class="error-box">  
       <h3>  
-        <%= "#{pluralize(@section.errors.count, "error")} stopped this Section from being added:" %>  
+        <%= "#{pluralize(@section.errors.count, "error")} stopped this Section from being updated:" %>  
       </h3>  
       <div>
         <ul>  

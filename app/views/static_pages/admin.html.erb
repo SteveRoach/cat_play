@@ -3,16 +3,16 @@
 <div class="row">	
 	<div class="col-xs-12">
 		<% if logged_in? %>
-			<h2>Maintain Journals</h2>
+			<h2>Maintain Journal Entries</h2>
 			<ul class=admin-list>
 				<li>
 					<div class="col-md-10 col-md-offset-1">
-						<%= link_to "Add Journal", new_journal_path %>
+						<%= link_to "Create Journal Entry", new_journal_path %>
 					</div>
 				</li>
 				<li>
 					<div class="col-md-10 col-md-offset-1">
-						<%= link_to "List / Delete Journal Entries", journals_path %>
+						<%= link_to "Edit Journal Entries", journals_path %>
 					</div>
 
 				</li>
@@ -21,12 +21,12 @@
 			<ul class=admin-list>
 				<li>
 					<div class="col-md-10 col-md-offset-1">
-						<%= link_to "Add Sections", new_section_path %>
+						<%= link_to "Create Section", new_section_path %>
 					</div>
 				</li>
 				<li>
 					<div class="col-md-10 col-md-offset-1">
-						<%= link_to "List / Delete Sections", sections_path %>
+						<%= link_to "Edit Sections", sections_path %>
 					</div>
 
 				</li>
@@ -35,12 +35,12 @@
 			<ul class=admin-list>
 				<li>
 					<div class="col-md-10 col-md-offset-1">
-						<%= link_to "Add Tags", new_tag_path %>
+						<%= link_to "Create Tag", new_tag_path %>
 					</div>
 				</li>
 				<li>
 					<div class="col-md-10 col-md-offset-1">
-						<%= link_to "List / Delete Tags", tags_path %>
+						<%= link_to "Edit Tags", tags_path %>
 					</div>
 
 				</li>

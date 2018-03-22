@@ -1,10 +1,10 @@
-<% provide(:title, "Create Journal Entry") %>
-<h1 class="text-center">create journal entry</h1>
+<% provide(:title, "Edit Journal Entry") %>
+<h1 class="text-center">edit journal entry</h1>
 <%= form_for @journal, :html => {:class => 'form-horizontal'} do |f| %>  
   <% if @journal.errors.any? %>  
     <div id="error_explanation" class="error-box">  
       <h3>  
-        <%= "#{pluralize(@journal.errors.count, "error")} stopped this Journal Entry from being added:" %>  
+        <%= "#{pluralize(@journal.errors.count, "error")} stopped this Journal Entry from being updated:" %>  
       </h3>  
       <div>
         <ul>  
@@ -24,7 +24,7 @@
   <div class="form-group">  
     <%= f.label :posted_date, class: 'col-sm-2 control-label form-label' %>  
     <div class="col-sm-8">  
-      <%= f.date_field :posted_date, class: 'form-control form-entry datepicker', placeholder: "Date Posted" %> 
+      <%= f.date_field :posted_date, class: 'form-control form-entry', placeholder: "Date Posted" %>
     </div>  
   </div>  
   <div class="form-group">  
@@ -36,7 +36,7 @@
   <div class="form-group tag-textarea-form-group">  
     <%= f.label "Tags", class: 'col-sm-2 control-label form-label' %>  
     <div class="col-sm-8">  
-      <%= text_area_tag :tag_text, "", size: "5x5", class: 'form-control form-entry tag-textarea' %> 
+      <%= text_area_tag :tag_text, @tag_string, size: "5x5", class: 'form-control form-entry tag-textarea' %> 
     </div>  
   </div>
   <div class="form-group">  
@@ -47,9 +47,9 @@
   <div class="form-group">  
     <div class="col-sm-8 col-sm-offset-2">  
       <div class='form-control form-entry tag-pick'>
-        <% @tags.each do |tag| %> 
+        <% @all_tags.each do |tag| %> 
           <a class="tag_link" href="#"><%= tag.name %></a>
-          <% unless tag == @tags.last %>
+          <% unless tag == @all_tags.last %>
             <span>,</span>  
           <% end %>
         <% end %>  
@@ -58,8 +58,8 @@
   </div>  
   <div class="form-group">  
     <div class="col-sm-offset-2 col-sm-8 ">  
-      <%= f.submit 'Save', class: 'btn btn-default form-button', style: "width: 8em;" %>  
+      <%= f.submit 'Save', class: 'btn btn-default form-button input-button', style: "width: 8em;" %>  
     </div>  
   </div>  
 <% end %> 
-<dir class="short-page-footer-new-journal"></dir>
+<dir class="short-page-footer"></dir>
