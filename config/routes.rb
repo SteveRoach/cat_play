@@ -20,4 +20,11 @@ Rails.application.routes.draw do
   resources   :tags, only: [:new, :create, :index, :destroy, :update, :edit]
   resources   :journals, only: [:new, :create, :index, :destroy, :update, :edit]
 
+  resources   :journals do
+    collection do
+      get "search"
+      post "search_result"
+    end
+  end
+
 end 

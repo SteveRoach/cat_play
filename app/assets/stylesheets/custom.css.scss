@@ -110,6 +110,10 @@ a , a:hover, a:active, a:focus {
 	margin-top: 20px;
 }
 
+.top-margin-10 {
+	margin-top: 10px;
+}
+
 .map-image {
 	border: 1px solid black
 }
@@ -474,6 +478,7 @@ a , a:hover, a:active, a:focus {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	height: 1.6em;
 }
 
 .journal-button {
@@ -487,6 +492,7 @@ a , a:hover, a:active, a:focus {
 .journal-url-loggedout a {
 	text-decoration: underline;
 	padding: 0;
+	color: blue;
 }
 
 .tag-pick {
@@ -633,9 +639,6 @@ a , a:hover, a:active, a:focus {
 		margin: 1px;
 	}
 
-	.journal-url-loggedout {
-		width: 41.45%;
-	}
 }
 
 /* Extra large devices (large desktops, 1200px and up) */

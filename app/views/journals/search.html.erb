@@ -1,0 +1,39 @@
+<% provide(:title, "Search the Journal") %>
+<h1 class="text-center">search the journal</h1>
+<%= form_for :search_criteria, url: "search_result", :html => {:class => 'form-horizontal'} do |f| %>	
+	<div class="form-group">	
+		<%= f.label :title, class: 'col-sm-2 control-label form-label' %>	
+		<div class="col-sm-8">	
+			<%= f.text_field :title, class: 'form-control form-entry', placeholder: "Part-Title" %>
+		</div>	
+	</div>	
+	<div class="form-group">	
+		<%= f.label :from_date, class: 'col-sm-2 control-label form-label' %>	
+		<div class="col-sm-8">	
+			<%= f.date_field :from_date, class: 'form-control form-entry', placeholder: "From Date" %>
+		</div>	
+	</div>	
+	<div class="form-group">	
+		<%= f.label :to_date, class: 'col-sm-2 control-label form-label' %>	
+		<div class="col-sm-8">	
+			<%= f.date_field :to_date, class: 'form-control form-entry', placeholder: "To Date" %>
+		</div>	
+	</div>	
+	<div class="form-group">	
+		<%= f.label "Tag", class: 'col-sm-2 control-label form-label' %>	
+		<div class="col-sm-3">	
+			<%= f.collection_select :tag1, @tags, :id, :name, { :prompt => "Select a Tag" }, {class: 'form-control form-entry'} %>
+		</div>	
+		<div class="col-sm-2">	
+			<%= f.select :logic_operation, [["AND", 1], ["OR", 2]], { :prompt => "Select Operation" }, { :class => 'form-control form-entry' } %>
+		</div>	
+		<div class="col-sm-3">	
+			<%= f.collection_select :tag2, @tags, :id, :name, { :prompt => "Select a Tag" }, {class: 'form-control form-entry'} %>
+		</div>	
+	</div>	
+	<div class="form-group">	
+		<div class="col-sm-offset-2 col-sm-8 ">	
+			<%= f.submit 'Search', class: 'btn btn-default form-button', style: "width: 8em;" %>	
+		</div>	
+	</div>	
+<% end %> 

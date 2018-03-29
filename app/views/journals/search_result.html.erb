@@ -1,0 +1,30 @@
+<% provide(:title, "Journals") %>
+<h1 class="text-center">journals</h1>
+<div class="row text-center">
+	<%= will_paginate %>
+</div>
+<div class="row">
+	<div class="col-md-10 col-md-offset-1">
+		<ul class=admin-list>
+			<% @journal_array.each do |journal| %>
+				<li>
+					<div class="col-md-11 col-xs-12 journal-field">
+						<%= journal[:title] %>
+					</div>
+					<div class="col-md-11 col-xs-12 journal-field">
+						<%= journal[:posted_date].strftime("%d-%b-%Y") %>
+					</div>
+					<div class="col-md-11 col-xs-12 journal-field journal-url">
+						<%= journal[:tags] %>
+					</div>
+					<div class="col-md-11 col-xs-12 journal-field journal-url journal-url-loggedout">
+						<%= link_to "Go there...", journal[:url], target: "_blank" %>
+					</div>
+				</li>
+			<% end %>
+		</ul>
+	</div>
+</div>
+<div class="row text-center">
+	<%= will_paginate %>
+</div>
