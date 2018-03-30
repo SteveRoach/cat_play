@@ -157,48 +157,56 @@ class JournalsController < ApplicationController
 	end
 
 	def search_result
-		if params[:search_criteria][:title].present?
-			title = "%" + params[:search_criteria][:title] + "%"
-		else
-			title = String.new("%")
-		end
-		
-		if params[:search_criteria][:from_date].present?
-			from_date = params[:search_criteria][:from_date]
-		else
-			from_date = Date.new(1900,01,01)
-		end
+		this_function = "search_result"
+		DebugHelper.write_debug(this_function, 2, "+", "START")
+		DebugHelper.write_debug(this_function, 4, " ", params[:search_criteria].inspect)
+		DebugHelper.write_debug(this_function, 4, " ", @journals.inspect)
+		DebugHelper.write_debug(this_function, 4, " ", params.inspect)
 
-		if params[:search_criteria][:to_date].present?
-			to_date = params[:search_criteria][:to_date]
-		else
-			to_date = Date.new(2500,01,01)
-		end
-
-		if params[:search_criteria][:tag1].present?
-			tag1 = params[:search_criteria][:tag1]
-		else
-			tag1 = 0
-		end
+		if ! params[:search_criteria].nil?
+			if params[:search_criteria][:title].present?
+				title = "%" + params[:search_criteria][:title] + "%"
+			else
+				title = String.new("%")
+			end
 			
-		if params[:search_criteria][:tag2].present?
-			tag2 = params[:search_criteria][:tag2]
-		else
-			tag2 = tag1
-		end
+			if params[:search_criteria][:from_date].present?
+				from_date = params[:search_criteria][:from_date]
+			else
+				from_date = Date.new(1900,01,01)
+			end
 
-		if params[:search_criteria][:logic_operation].present?
-			if params[:search_criteria][:logic_operation] == 1
-				if tag1 == 0
-					logic_operation = String.new("OR")
+			if params[:search_criteria][:to_date].present?
+				to_date = params[:search_criteria][:to_date]
+			else
+				to_date = Date.new(2500,01,01)
+			end
+
+			if params[:search_criteria][:tag1].present?
+				tag1 = params[:search_criteria][:tag1]
+			else
+				tag1 = 0
+			end
+				
+			if params[:search_criteria][:tag2].present?
+				tag2 = params[:search_criteria][:tag2]
+			else
+				tag2 = tag1
+			end
+
+			if params[:search_criteria][:logic_operation].present?
+				if params[:search_criteria][:logic_operation] == 1
+					if tag1 == 0
+						logic_operation = String.new("OR")
+					else
+						logic_operation = String.new("AND")
+					end
 				else
-					logic_operation = String.new("AND")
+					logic_operation = String.new("OR")
 				end
 			else
 				logic_operation = String.new("OR")
 			end
-		else
-			logic_operation = String.new("OR")
 		end
 			
 logger.debug "vvvvvvvvvvvvvvv"
@@ -212,18 +220,9 @@ logger.debug "^^^^^^^^^^^^^^^"
 
 		@journal_array = []
 
-		@journals = Journal.joins(:journal_tags)
-		@journals = @journals.where("journals.title ILIKE ?", title)
-		@journals = @journals.where("journals.posted_date BETWEEN ? AND ?", from_date, to_date)
-		@journals = @journals.paginate(page: params[:page], per_page: 10)
+		DebugHelper.write_debug(this_function, 4, " ", "params[:page]=<" + (params[:page] || "nil").to_s + ">")
 
-		if tag1 != 0 or tag2 != 0
-			if logic_operation == "OR"
-				@journals = @journals.where("journal_tags.tag_id = ? OR journal_tags.tag_id = ?", tag1, tag2)
-			else
-				@journals = @journals.where("journal_tags.tag_id = ? AND journal_tags.tag_id = ?", tag1, tag2)
-			end
-		end
+		@journals = Journal.where("journals.title ILIKE ?", title).where("journals.posted_date BETWEEN ? AND ?", from_date, to_date).order('posted_date ASC')
 
 		if @journals.count == 0
 			flash.now[:warning] = "No Journal Entries found for that criteria."
@@ -246,12 +245,14 @@ logger.debug "^^^^^^^^^^^^^^^"
 				@journal_array.push(journal_hash)
 			end
 		end
+
+		DebugHelper.write_debug("this_function", 2, "-", "END")
 	end
 
 	private
 
 		def user_params
-			params.require(:journal).permit(:title, :posted_date, :url, :tag_text)
+			params.require(:journal).permit(:title, :posted_date, :url, :tag_text, :page)
 		end
 
 		def logged_in_user
