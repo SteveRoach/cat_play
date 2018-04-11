@@ -210,8 +210,6 @@ class JournalsController < ApplicationController
 				@journal_array.push(journal_hash)
 			end
 		end
-
-		DebugHelper.write_debug("this_function", 2, "-", "END")
 	end
 
 	private
