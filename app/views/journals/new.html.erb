@@ -1,65 +1,64 @@
 <% provide(:title, "Create Journal Entry") %>
 <h1 class="text-center">create journal entry</h1>
-<%= form_for @journal, :html => {:class => 'form-horizontal'} do |f| %>  
-  <% if @journal.errors.any? %>  
-    <div id="error_explanation" class="error-box">  
-      <h3>  
-        <%= "#{pluralize(@journal.errors.count, "error")} stopped this Journal Entry from being added:" %>  
-      </h3>  
-      <div>
-        <ul>  
-          <% @journal.errors.full_messages.each do |msg| %>  
-            <li><%= msg %></li>  
-          <% end %>  
-        </ul>
-      </div>
-    </div>  
-  <% end %>  
-  <div class="form-group">  
-    <%= f.label :title, class: 'col-sm-2 control-label form-label' %>  
-    <div class="col-sm-8">  
-      <%= f.text_field :title, class: 'form-control form-entry', placeholder: "Title" %>
-    </div>  
-  </div>  
-  <div class="form-group">  
-    <%= f.label :posted_date, class: 'col-sm-2 control-label form-label' %>  
-    <div class="col-sm-8">  
-      <%= f.date_field :posted_date, class: 'form-control form-entry datepicker', placeholder: "Date Posted" %> 
-    </div>  
-  </div>  
-  <div class="form-group">  
-    <%= f.label :url, class: 'col-sm-2 control-label form-label' %>  
-    <div class="col-sm-8">  
-      <%= f.text_field :url, class: 'form-control form-entry', placeholder: "URL" %> 
-    </div>  
-  </div>  
-  <div class="form-group tag-textarea-form-group">  
-    <%= f.label "Tags", class: 'col-sm-2 control-label form-label' %>  
-    <div class="col-sm-8">  
-      <%= text_area_tag :tag_text, "", size: "5x5", class: 'form-control form-entry tag-textarea' %> 
-    </div>  
-  </div>
-  <div class="form-group">  
-    <div class="col-sm-8 col-sm-offset-2">  
-      <span class="tag-entry-label">Separate labels with commas</span>
-    </div>  
-  </div>
-  <div class="form-group">  
-    <div class="col-sm-8 col-sm-offset-2">  
-      <div class='form-control form-entry tag-pick'>
-        <% @tags.each do |tag| %> 
-          <a class="tag_link" href="#"><%= tag.name %></a>
-          <% unless tag == @tags.last %>
-            <span>,</span>  
-          <% end %>
-        <% end %>  
-      </div> 
-    </div>  
-  </div>  
-  <div class="form-group">  
-    <div class="col-sm-offset-2 col-sm-8 ">  
-      <%= f.submit 'Save', class: 'btn btn-default form-button', style: "width: 8em;" %>  
-    </div>  
-  </div>  
+<%= form_for @journal, :html => {:class => 'form-horizontal'} do |f| %>	
+	<% if @journal.errors.any? %>	
+		<div id="error_explanation" class="error-box">	
+			<h3>
+				<%= "#{pluralize(@journal.errors.count, "error")} stopped this Journal Entry from being added:" %>	
+			</h3>
+			<div>
+				<ul>	
+					<% @journal.errors.full_messages.each do |msg| %>	
+						<li><%= msg %></li>	
+					<% end %>	
+				</ul>
+			</div>
+		</div>	
+	<% end %>	
+	<div class="form-group">	
+		<%= f.label :title, class: 'col-sm-2 control-label form-label' %>	
+		<div class="col-sm-8">	
+			<%= f.text_field :title, class: 'form-control form-entry', placeholder: "Title" %>
+		</div>	
+	</div>	
+	<div class="form-group">	
+		<%= f.label :posted_date, class: 'col-sm-2 control-label form-label' %>	
+		<div class="col-sm-8">	
+			<%= f.date_field :posted_date, class: 'form-control form-entry datepicker', placeholder: "Date Posted" %> 
+		</div>	
+	</div>	
+		<div class="form-group">	
+		<%= f.label :url, class: 'col-sm-2 control-label form-label' %>	
+		<div class="col-sm-8">	
+			<%= f.text_field :url, class: 'form-control form-entry', placeholder: "URL" %> 
+		</div>	
+	</div>	
+	<div class="form-group tag-textarea-form-group">	
+		<%= f.label "Tags", class: 'col-sm-2 control-label form-label' %>	
+		<div class="col-sm-8">	
+			<%= text_area_tag :tag_text, "", size: "5x5", class: 'form-control form-entry tag-textarea' %> 
+		</div>	
+	</div>
+	<div class="form-group">	
+		<div class="col-sm-8 col-sm-offset-2">	
+			<span class="tag-entry-label">Separate labels with commas</span>
+		</div>	
+	</div>
+	<div class="form-group">	
+		<div class="col-sm-8 col-sm-offset-2">	
+			<div class='form-control form-entry tag-pick'>
+			<% @tags.each do |tag| %> 
+				<a class="tag_link" href="#"><%= tag.name %></a>
+				<% unless tag == @tags.last %>
+					<span>,</span>	
+				<% end %>
+			<% end %>	
+			</div> 
+		</div>	
+	</div>	
+	<div class="form-group">	
+		<div class="col-sm-offset-2 col-sm-8 ">	
+			<%= f.submit 'Save', class: 'btn btn-default form-button', style: "width: 8em;" %>	
+		</div>	
+	</div>	
 <% end %> 
-<dir class="short-page-footer-new-journal"></dir>

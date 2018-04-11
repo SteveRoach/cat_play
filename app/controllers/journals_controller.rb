@@ -1,38 +1,23 @@
 class JournalsController < ApplicationController
+	include JournalsHelper
 
 	def new
-		@journal = Journal.new
+		journal = Journal.new
 
-		@tags = Tag.order('name ASC')
+		tags = Tag.ordered
 	end
 
 	def create
-		@section = Section.find_by(name: "Journal")
+		journal = Journal.new(user_params.merge({section_id: Section.journal.first.id}))
+		journal.title.strip!
+		journal.url.strip!
 
-		@journal = Journal.new(user_params.merge({section_id: @section.id}))
-		@journal.title.strip!
-		@journal.url.strip!
+		tag_array = arrayify_tags(params[:tag_text])
 
-		@submitted_tag_string = params[:tag_text]
+		save_new_tags(tag_array)
 
-		@submitted_tag_array = @submitted_tag_string.split(",")
-
-		@submitted_tag_array.each do |submitted_tag|
-			submitted_tag.strip!
-
-			unless Tag.exists?(name: submitted_tag)
-				@new_tag = Tag.new(name: submitted_tag)
-				@new_tag.save
-			end
-		end
-
-		if @journal.save
-			@submitted_tag_array.each do |submitted_tag|
-				submitted_tag.strip!
-				@existing_tag = Tag.find_by(name: submitted_tag)
-				@new_journal_tag = JournalTag.new(journal_id: @journal.id, tag_id: @existing_tag.id)
-				@new_journal_tag.save
-			end
+		if journal.save
+			link_tags_to_journal(journal.id, tag_array)
 
 			flash[:success] = "New Journal Entry saved."
 			redirect_to new_journal_path
@@ -46,55 +31,43 @@ class JournalsController < ApplicationController
 			flash.now[:warning] = "No Journal Entries found."
 		end
 		
-		@journal_array = []
-
 		if params[:id].nil?
-			@posted_date = Date.parse('01-01-1900')
+			posted_date = Date.parse('01-01-1900')
 		else
-			@posted_date = Journal.where("id = ?", params[:id]).select("posted_date")
+			posted_date = Journal.find(params[:id]).posted_date
 		end
 
-		@journals = Journal.order('posted_date ASC').where("posted_date >= (?)", @posted_date).paginate(page: params[:page], per_page: 10)
+		@journals = Journal.after_posted_date(posted_date).order_by_posted_date_asc.paginate(page: params[:page], per_page: 10)
 
+		@journal_array = []
+		
 		@journals.each do |journal|
-			tag_string = ""
+			tags = Tag.joins(:journal_tags).merge(JournalTag.journal_id(journal.id)).order("name")
 
-			@tags = Tag.joins(:journal_tags).where("journal_tags.journal_id = ?", journal.id).select("name").order("name")
+			csv_tags = csv_tags(tags)
 
-			@tags.each do |tag|
-				tag_string = tag_string + tag.name
-
-				unless tag == @tags.last
-					tag_string = tag_string + ", "
-				end
-			end
-
-			journal_hash = {:id=>journal.id, :title=>journal.title, :posted_date=>journal.posted_date, :url=>journal.url, :tags=>tag_string}
+			journal_hash = {:id=>journal.id, :title=>journal.title, :posted_date=>journal.posted_date, :url=>journal.url, :tags=>csv_tags}
 
 			@journal_array.push(journal_hash)
 		end
 	end
 
 	def destroy
+		destroy_tag_links(params[:id])
+
 		Journal.find(params[:id]).destroy
+
 		flash[:success] = "Journal Entry deleted."
+
 		redirect_to journals_path
 	end
 
 	def edit
 		@journal = Journal.find(params[:id])
 
-		@tags = Tag.joins(:journal_tags).where("journal_tags.journal_id = ?", @journal.id).select("name").order("name")
+		tags = Tag.joins(:journal_tags).merge(JournalTag.journal_id(@journal.id)).order("name")
 
-		@tag_string = ""
-
-		@tags.each do |tag|
-			@tag_string = @tag_string + tag.name
-
-			unless tag == @tags.last
-			@tag_string = @tag_string + ", "
-			end
-		end
+		@tag_string = csv_tags(tags)
 
 		@all_tags = Tag.order('name ASC')
 	end
@@ -102,49 +75,35 @@ class JournalsController < ApplicationController
 	def update
 		params[:journal][:title].strip!
 		params[:journal][:url].strip!
+		
 		@journal = Journal.find(params[:id])
 
-		@current_tag_links = JournalTag.where("journal_tags.journal_id = ?", @journal.id)
+		destroy_tag_links(@journal.id)
 
-		@current_tag_links.each do |current_tag_link|
-				current_tag_link.destroy
-		end
+		tag_array = params[:tag_text].split(",")
 
-		@submitted_tag_string = params[:tag_text]
-
-		@submitted_tag_array = @submitted_tag_string.split(",")
-
-		@submitted_tag_array.each do |submitted_tag|
+		tag_array.each do |submitted_tag|
 			submitted_tag.strip!
 
 			unless Tag.exists?(name: submitted_tag)
-				@new_tag = Tag.new(name: submitted_tag)
-				@new_tag.save
+				Tag.new(name: submitted_tag).save
 			end
 		end
 
 		if @journal.update_attributes(user_params)
-			@submitted_tag_array.each do |submitted_tag|
+			tag_array.each do |submitted_tag|
 				submitted_tag.strip!
-				@existing_tag = Tag.find_by(name: submitted_tag)
-				@new_journal_tag = JournalTag.new(journal_id: @journal.id, tag_id: @existing_tag.id)
-				@new_journal_tag.save
+
+				tag = Tag.by_name(submitted_tag).first
+				JournalTag.new(journal_id: @journal.id, tag_id: tag.id).save
 			end
 
 			flash[:success] = "Journal Entry updated."
 			redirect_to journals_path(:id => params[:id])
 		else
-			@tags = Tag.joins(:journal_tags).where("journal_tags.journal_id = ?", @journal.id).select("name").order("name")
+			tags = Tag.joins(:journal_tags).merge(JournalTag.journal_id(@journal.id)).order("name")
 
-			@tag_string = ""
-
-			@tags.each do |tag|
-				@tag_string = @tag_string + tag.name
-
-				unless tag == @tags.last
-					@tag_string = @tag_string + ", "
-				end
-			end
+			@tag_string = csv_tags(tags)
 
 			@all_tags = Tag.order('name ASC')
 
@@ -159,27 +118,25 @@ class JournalsController < ApplicationController
 	def search_result
 		this_function = "search_result"
 		DebugHelper.write_debug(this_function, 2, "+", "START")
-		DebugHelper.write_debug(this_function, 4, " ", params[:search_criteria].inspect)
-		DebugHelper.write_debug(this_function, 4, " ", @journals.inspect)
 		DebugHelper.write_debug(this_function, 4, " ", params.inspect)
 
 		if ! params[:search_criteria].nil?
 			if params[:search_criteria][:title].present?
-				title = "%" + params[:search_criteria][:title] + "%"
+				@title = "%" + params[:search_criteria][:title] + "%"
 			else
-				title = String.new("%")
+				@title = String.new("%")
 			end
 			
 			if params[:search_criteria][:from_date].present?
-				from_date = params[:search_criteria][:from_date]
+				@from_date = params[:search_criteria][:from_date]
 			else
-				from_date = Date.new(1900,01,01)
+				@from_date = Date.new(1900,01,01)
 			end
 
 			if params[:search_criteria][:to_date].present?
-				to_date = params[:search_criteria][:to_date]
+				@to_date = params[:search_criteria][:to_date]
 			else
-				to_date = Date.new(2500,01,01)
+				@to_date = Date.new(2500,01,01)
 			end
 
 			if params[:search_criteria][:tag1].present?
@@ -191,11 +148,11 @@ class JournalsController < ApplicationController
 			if params[:search_criteria][:tag2].present?
 				tag2 = params[:search_criteria][:tag2]
 			else
-				tag2 = tag1
+				tag2 = @tag1
 			end
 
 			if params[:search_criteria][:logic_operation].present?
-				if params[:search_criteria][:logic_operation] == 1
+				if params[:search_criteria][:logic_operation] == "1"
 					if tag1 == 0
 						logic_operation = String.new("OR")
 					else
@@ -209,36 +166,60 @@ class JournalsController < ApplicationController
 			end
 		end
 			
-logger.debug "vvvvvvvvvvvvvvv"
-logger.debug title.inspect
-logger.debug from_date.inspect
-logger.debug to_date.inspect
-logger.debug tag1.inspect
-logger.debug logic_operation.inspect
-logger.debug tag2.inspect
-logger.debug "^^^^^^^^^^^^^^^"
+		DebugHelper.write_debug(this_function, 4, " ", "@title=" + @title)
+		DebugHelper.write_debug(this_function, 4, " ", "@from_date=" + @from_date.inspect)
+		DebugHelper.write_debug(this_function, 4, " ", "@to_date=" + @to_date.inspect)
+		DebugHelper.write_debug(this_function, 4, " ", "tag1=" + tag1.inspect)
+		DebugHelper.write_debug(this_function, 4, " ", "tag2=" + tag2.inspect)
+		DebugHelper.write_debug(this_function, 4, " ", "logic_operation=" + logic_operation.inspect)
 
-		@journal_array = []
 
-		DebugHelper.write_debug(this_function, 4, " ", "params[:page]=<" + (params[:page] || "nil").to_s + ">")
+		tag1_array = []
 
-		@journals = Journal.where("journals.title ILIKE ?", title).where("journals.posted_date BETWEEN ? AND ?", from_date, to_date).order('posted_date ASC')
+		if tag1 != 0
+			tag1_list = JournalTag.tag_id(tag1)
+
+			tag1_list.each do |t|
+				tag1_array.push(t.journal_id)
+			end
+		end
+
+		DebugHelper.write_debug(this_function, 4, " ", "tag1_array=" + tag1_array.inspect)
+
+		tag2_array = []
+
+		if tag2 != 0
+			tag2_list = JournalTag.tag_id(tag2)
+
+			tag2_list.each do |t|
+				tag2_array.push(t.journal_id)
+			end
+		end
+
+		DebugHelper.write_debug(this_function, 4, " ", "tag2_array=" + tag2_array.inspect)
+
+		if logic_operation == "AND"
+			result_array = tag1_array & tag2_array
+		else
+			result_array = tag1_array | tag2_array
+		end
+
+		DebugHelper.write_debug(this_function, 4, " ", "result_array=" + result_array.inspect)
+
+		@journals = Journal.ilike_title(@title).between_posted_dates(@from_date, @to_date).id_in(result_array).order('posted_date ASC').paginate(page: params[:page], per_page: 10)
+
+		#DebugHelper.write_debug(this_function, 4, " ", "@journals=" + @journals.inspect)
 
 		if @journals.count == 0
 			flash.now[:warning] = "No Journal Entries found for that criteria."
 		else
+			@journal_array = []
+
 			@journals.each do |journal|
-				tag_string = ""
 
-				@tags = Tag.joins(:journal_tags).where("journal_tags.journal_id = ?", journal.id).select("name").order("name")
+				tags = Tag.joins(:journal_tags).merge(JournalTag.journal_id(journal.id)).order("name")
 
-				@tags.each do |tag|
-					tag_string = tag_string + tag.name
-
-					unless tag == @tags.last
-						tag_string = tag_string + ", "
-					end
-				end
+				tag_string = csv_tags(tags)
 
 				journal_hash = {:id=>journal.id, :title=>journal.title, :posted_date=>journal.posted_date, :url=>journal.url, :tags=>tag_string}
 
@@ -252,7 +233,7 @@ logger.debug "^^^^^^^^^^^^^^^"
 	private
 
 		def user_params
-			params.require(:journal).permit(:title, :posted_date, :url, :tag_text, :page)
+			params.require(:journal).permit(:title, :posted_date, :url, :tag_text)
 		end
 
 		def logged_in_user

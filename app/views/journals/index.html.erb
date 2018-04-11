@@ -22,7 +22,7 @@
 					</div>
 					<div class="col-md-11 col-xs-12 text-right journal-button">
 						<%= link_to "Update", edit_journal_path(:id => journal[:id]), class: "btn btn-default form-button delete-button" %>
-						<%= link_to "Delete", journal, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default form-button delete-button" %>
+						<%= link_to "Delete", journal_path(:id => journal[:id]), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default form-button delete-button" %>
 					</div>
 				</li>
 			<% end %>

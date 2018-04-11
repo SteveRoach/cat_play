@@ -1,6 +1,6 @@
 <% provide(:title, "Search the Journal") %>
 <h1 class="text-center">search the journal</h1>
-<%= form_for :search_criteria, url: "search_result", :html => {:class => 'form-horizontal'} do |f| %>	
+<%= form_for :search_criteria, url: "search_result", :html => {:method => 'GET', :class => 'form-horizontal'} do |f| %>	
 	<div class="form-group">	
 		<%= f.label :title, class: 'col-sm-2 control-label form-label' %>	
 		<div class="col-sm-8">	

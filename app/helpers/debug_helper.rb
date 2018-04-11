@@ -25,5 +25,12 @@ module DebugHelper
 			end
 		end
 	end
+
+	def example_code(a_param)
+		this_function = "example_code"
+		DebugHelper.write_debug(this_function, 2, "+", "START")
+		DebugHelper.write_debug(this_function, 4, " ", a_param.inspect)
+		DebugHelper.write_debug("this_function", 2, "-", "END")
+	end
 end
 
