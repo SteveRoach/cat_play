@@ -116,27 +116,23 @@ class JournalsController < ApplicationController
 	end
 
 	def search_result
-		this_function = "search_result"
-		DebugHelper.write_debug(this_function, 2, "+", "START")
-		DebugHelper.write_debug(this_function, 4, " ", params.inspect)
-
 		if ! params[:search_criteria].nil?
 			if params[:search_criteria][:title].present?
-				@title = "%" + params[:search_criteria][:title] + "%"
+				title = "%" + params[:search_criteria][:title] + "%"
 			else
-				@title = String.new("%")
+				title = String.new("%")
 			end
 			
 			if params[:search_criteria][:from_date].present?
-				@from_date = params[:search_criteria][:from_date]
+				from_date = params[:search_criteria][:from_date]
 			else
-				@from_date = Date.new(1900,01,01)
+				from_date = Date.new(1900,01,01)
 			end
 
 			if params[:search_criteria][:to_date].present?
-				@to_date = params[:search_criteria][:to_date]
+				to_date = params[:search_criteria][:to_date]
 			else
-				@to_date = Date.new(2500,01,01)
+				to_date = Date.new(2500,01,01)
 			end
 
 			if params[:search_criteria][:tag1].present?
@@ -148,7 +144,7 @@ class JournalsController < ApplicationController
 			if params[:search_criteria][:tag2].present?
 				tag2 = params[:search_criteria][:tag2]
 			else
-				tag2 = @tag1
+				tag2 = tag1
 			end
 
 			if params[:search_criteria][:logic_operation].present?
@@ -166,14 +162,6 @@ class JournalsController < ApplicationController
 			end
 		end
 			
-		DebugHelper.write_debug(this_function, 4, " ", "@title=" + @title)
-		DebugHelper.write_debug(this_function, 4, " ", "@from_date=" + @from_date.inspect)
-		DebugHelper.write_debug(this_function, 4, " ", "@to_date=" + @to_date.inspect)
-		DebugHelper.write_debug(this_function, 4, " ", "tag1=" + tag1.inspect)
-		DebugHelper.write_debug(this_function, 4, " ", "tag2=" + tag2.inspect)
-		DebugHelper.write_debug(this_function, 4, " ", "logic_operation=" + logic_operation.inspect)
-
-
 		tag1_array = []
 
 		if tag1 != 0
@@ -183,8 +171,6 @@ class JournalsController < ApplicationController
 				tag1_array.push(t.journal_id)
 			end
 		end
-
-		DebugHelper.write_debug(this_function, 4, " ", "tag1_array=" + tag1_array.inspect)
 
 		tag2_array = []
 
@@ -196,19 +182,17 @@ class JournalsController < ApplicationController
 			end
 		end
 
-		DebugHelper.write_debug(this_function, 4, " ", "tag2_array=" + tag2_array.inspect)
-
 		if logic_operation == "AND"
 			result_array = tag1_array & tag2_array
 		else
 			result_array = tag1_array | tag2_array
 		end
 
-		DebugHelper.write_debug(this_function, 4, " ", "result_array=" + result_array.inspect)
-
-		@journals = Journal.ilike_title(@title).between_posted_dates(@from_date, @to_date).id_in(result_array).order('posted_date ASC').paginate(page: params[:page], per_page: 10)
-
-		#DebugHelper.write_debug(this_function, 4, " ", "@journals=" + @journals.inspect)
+		if result_array.empty?
+			@journals = Journal.ilike_title(title).between_posted_dates(from_date, to_date).order_by_posted_date_asc.paginate(page: params[:page], per_page: 10)
+		else
+			@journals = Journal.ilike_title(title).between_posted_dates(from_date, to_date).id_in(result_array).order_by_posted_date_asc.paginate(page: params[:page], per_page: 10)
+		end
 
 		if @journals.count == 0
 			flash.now[:warning] = "No Journal Entries found for that criteria."
