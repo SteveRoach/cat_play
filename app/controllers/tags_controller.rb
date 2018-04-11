@@ -20,7 +20,7 @@ class TagsController < ApplicationController
 			flash.now[:warning] = "No Tags found."
 		end
 
-		@tags = Tag.ordered.paginate(page: params[:page], per_page: 10)
+		@tags = Tag.order_by_name_asc.paginate(page: params[:page], per_page: 10)
 	end
 
 	def destroy

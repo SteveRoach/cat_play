@@ -2,9 +2,9 @@ class JournalsController < ApplicationController
 	include JournalsHelper
 
 	def new
-		journal = Journal.new
+		@journal = Journal.new
 
-		tags = Tag.ordered
+		@tags = Tag.order_by_name_asc
 	end
 
 	def create
