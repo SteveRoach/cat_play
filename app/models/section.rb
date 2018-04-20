@@ -9,5 +9,5 @@ class Section < ActiveRecord::Base
 	scope :journal, -> { where(name: "Journal") }
 
 	# ORDER scopes
-	scope :ordered, -> { order('name ASC') }
+	scope :order_by_name_asc, -> { order('name ASC') }
 end

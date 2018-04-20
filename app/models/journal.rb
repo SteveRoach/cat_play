@@ -9,7 +9,7 @@ class Journal < ActiveRecord::Base
   	validates :url, presence: true
 
 	# WHERE scopes
-	scope :section_id, -> (section_id) { where(section_id: section_id) }
+	scope :by_section_id, -> (section_id) { where(section_id: section_id) }
 	scope :after_posted_date, -> (posted_date) { where('posted_date >= ?', posted_date) }
 	scope :ilike_title, -> (title) { where('title ILIKE ?', title)}
 	scope :between_posted_dates, -> (start_date, end_date) { where('journals.posted_date BETWEEN ? AND ?', start_date, end_date)}
